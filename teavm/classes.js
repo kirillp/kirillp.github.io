@@ -5149,16 +5149,8 @@ function jl_UnsupportedOperationException__init_() {
     jl_UnsupportedOperationException__init_0(var_0);
     return var_0;
 }
-function jl_UnsupportedOperationException__init_1(var_0) {
-    var var_1 = new jl_UnsupportedOperationException();
-    jl_UnsupportedOperationException__init_2(var_1, var_0);
-    return var_1;
-}
 function jl_UnsupportedOperationException__init_0($this) {
     jl_RuntimeException__init_1($this);
-}
-function jl_UnsupportedOperationException__init_2($this, $message) {
-    jl_RuntimeException__init_2($this, $message);
 }
 var jn_ReadOnlyBufferException = $rt_classWithoutFields(jl_UnsupportedOperationException);
 function jn_ReadOnlyBufferException__init_() {
@@ -20883,19 +20875,21 @@ function ose_WebWindow_hasFocus($this) {
     return $this.$mainCanvas !== (otjdh_HTMLDocument_current()).activeElement ? 0 : 1;
 }
 function ose_WebWindow_onSizeObserved($this, $entries, $o) {
-    var $i, $n, var$5, var$6;
+    var $i, $n, var$5, $domRect, $ratio, $width, $height;
     $i = 0;
     $n = $entries.length;
     while ($i < $n) {
         var$5 = $entries[$i];
         if (var$5.target === $this.$mainCanvas) {
             if (!("devicePixelContentBoxSize" in var$5 ? 1 : 0)) {
-                var$5.contentRect;
-                $rt_throw(jl_UnsupportedOperationException__init_1($rt_s(464)));
-            }
-            if (var$5.devicePixelContentBoxSize.length == 1) {
-                var$6 = var$5.devicePixelContentBoxSize[0];
-                ose_WebWindow_onCanvasSizeChanged($this, var$6.inlineSize | 0, var$6.blockSize | 0);
+                $domRect = var$5.contentRect;
+                $ratio = $this.$devicePixelRatio();
+                $width = osem_Numbers_iRnd($domRect.width * $ratio);
+                $height = osem_Numbers_iRnd($domRect.height * $ratio);
+                ose_WebWindow_onCanvasSizeChanged($this, $width, $height);
+            } else if (var$5.devicePixelContentBoxSize.length == 1) {
+                var$5 = var$5.devicePixelContentBoxSize[0];
+                ose_WebWindow_onCanvasSizeChanged($this, var$5.inlineSize | 0, var$5.blockSize | 0);
             }
         }
         $i = $i + 1 | 0;
@@ -21605,23 +21599,23 @@ function osedw_WorkerTest__init_0($this, $api) {
     var$2 = $api.$window;
     var$3 = osedw_WorkerTest$_init_$lambda$_0_0__init_($this);
     var$4 = $rt_createArray(jl_Object, 1);
-    var$4.data[0] = $rt_s(465);
-    var$2.$sendToWorker(var$3, $rt_s(466), var$4);
+    var$4.data[0] = $rt_s(464);
+    var$2.$sendToWorker(var$3, $rt_s(465), var$4);
     var$5 = $api.$window;
     var$6 = osedw_WorkerTest$_init_$lambda$_0_1__init_($this);
     var$7 = $rt_createArray(jl_Object, 1);
     var$7.data[0] = $rt_createCharArrayFromData([1, 2, 3, 4, 5]);
-    var$5.$sendToWorker(var$6, $rt_s(467), var$7);
+    var$5.$sendToWorker(var$6, $rt_s(466), var$7);
     var$5 = $api.$window;
     var$6 = osedw_WorkerTest$_init_$lambda$_0_2__init_($this);
     var$7 = $rt_createArray(jl_Object, 1);
     var$7.data[0] = $rt_createByteArrayFromData([1, 2, 3, 4, 5]);
-    var$5.$sendToWorker(var$6, $rt_s(468), var$7);
+    var$5.$sendToWorker(var$6, $rt_s(467), var$7);
     var$5 = $api.$window;
     var$6 = osedw_WorkerTest$_init_$lambda$_0_3__init_($this);
     var$7 = $rt_createArray(jl_Object, 1);
     var$7.data[0] = $rt_createIntArrayFromData([1, 2, 3, 4, 5]);
-    var$5.$sendToWorker(var$6, $rt_s(469), var$7);
+    var$5.$sendToWorker(var$6, $rt_s(468), var$7);
     osei_Input_addListener($api.$input, osed_CtrlO__init_($api, osedw_WorkerTest$_init_$lambda$_0_4__init_($this), osedw_WorkerTest$_init_$lambda$_0_5__init_($this)));
 }
 function osedw_WorkerTest_openFile($this, $fileHandle) {
@@ -21630,13 +21624,13 @@ function osedw_WorkerTest_openFile($this, $fileHandle) {
     var$3 = osedw_WorkerTest$openFile$lambda$_1_0__init_($this);
     var$4 = $rt_createArray(jl_Object, 1);
     var$4.data[0] = $fileHandle;
-    var$2.$sendToWorker(var$3, $rt_s(470), var$4);
+    var$2.$sendToWorker(var$3, $rt_s(469), var$4);
 }
 function osedw_WorkerTest_openDirectory($this, $fileHandle) {
     var var$2, var$3;
     var$2 = jl_System_err();
     var$3 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(var$3, $rt_s(471)), $fileHandle);
+    jl_StringBuilder_append(jl_StringBuilder_append(var$3, $rt_s(470)), $fileHandle);
     var$2.$println(jl_StringBuilder_toString(var$3));
     $rt_throw(jl_UnsupportedOperationException__init_());
 }
@@ -21646,12 +21640,12 @@ function osedw_WorkerTest_stringResult($this, $args) {
     var$3 = jl_System_out();
     var$4 = var$2[0];
     var$5 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(472)), var$4);
+    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(471)), var$4);
     var$3.$println(jl_StringBuilder_toString(var$5));
     var$3 = jl_System_out();
     var$4 = osedw_EditorWorker_string($args, 1);
     var$5 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(473)), var$4);
+    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(472)), var$4);
     var$3.$println(jl_StringBuilder_toString(var$5));
 }
 function osedw_WorkerTest_charsResult($this, $args) {
@@ -21660,14 +21654,14 @@ function osedw_WorkerTest_charsResult($this, $args) {
     var$3 = jl_System_out();
     var$4 = var$2[0];
     var$5 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(472)), var$4);
+    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(471)), var$4);
     var$3.$println(jl_StringBuilder_toString(var$5));
     $chars = (osedw_EditorWorker_array($args, 1)).$chars0();
     var$3 = jl_System_out();
     var$4 = var$2[1];
     var$5 = ju_Arrays_toString4($chars);
     var$7 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(var$7, $rt_s(474)), var$4), $rt_s(475)), var$5);
+    jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(var$7, $rt_s(473)), var$4), $rt_s(474)), var$5);
     var$4 = jl_StringBuilder_toString(var$7);
     var$3.$println(var$4);
 }
@@ -21677,14 +21671,14 @@ function osedw_WorkerTest_bytesResult($this, $args) {
     var$3 = jl_System_out();
     var$4 = var$2[0];
     var$5 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(472)), var$4);
+    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(471)), var$4);
     var$3.$println(jl_StringBuilder_toString(var$5));
     $bytes = (osedw_EditorWorker_array($args, 1)).$bytes();
     var$3 = jl_System_out();
     var$4 = var$2[1];
     var$5 = ju_Arrays_toString3($bytes);
     var$7 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(var$7, $rt_s(476)), var$4), $rt_s(477)), var$5);
+    jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(var$7, $rt_s(475)), var$4), $rt_s(476)), var$5);
     var$4 = jl_StringBuilder_toString(var$7);
     var$3.$println(var$4);
 }
@@ -21694,14 +21688,14 @@ function osedw_WorkerTest_intsResult($this, $args) {
     var$3 = jl_System_out();
     var$4 = var$2[0];
     var$5 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(472)), var$4);
+    jl_StringBuilder_append(jl_StringBuilder_append(var$5, $rt_s(471)), var$4);
     var$3.$println(jl_StringBuilder_toString(var$5));
     $ints = (osedw_EditorWorker_array($args, 1)).$ints();
     var$3 = jl_System_out();
     var$4 = var$2[1];
     var$5 = ju_Arrays_toString($ints);
     var$7 = jl_StringBuilder__init_();
-    jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(var$7, $rt_s(478)), var$4), $rt_s(479)), var$5);
+    jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(jl_StringBuilder_append(var$7, $rt_s(477)), var$4), $rt_s(478)), var$5);
     var$4 = jl_StringBuilder_toString(var$7);
     var$3.$println(var$4);
 }
@@ -21732,9 +21726,9 @@ function ose_Host_$values() {
     return $rt_createArrayFromData(ose_Host, [ose_Host_Chrome, ose_Host_Firefox, ose_Host_Direct2D]);
 }
 function ose_Host__clinit_() {
-    ose_Host_Chrome = ose_Host__init_($rt_s(480), 0);
-    ose_Host_Firefox = ose_Host__init_($rt_s(481), 1);
-    ose_Host_Direct2D = ose_Host__init_($rt_s(482), 2);
+    ose_Host_Chrome = ose_Host__init_($rt_s(479), 0);
+    ose_Host_Firefox = ose_Host__init_($rt_s(480), 1);
+    ose_Host_Direct2D = ose_Host__init_($rt_s(481), 2);
     ose_Host_$VALUES = ose_Host_$values();
 }
 function jusi_ArrayStreamImpl() {
@@ -22487,7 +22481,7 @@ function osed_IdeaCodeColors$Colors_$callClinit() {
 }
 function osed_IdeaCodeColors$Colors__clinit_() {
     osed_IdeaCodeColors$Colors_editBgColor = osem_Color__init_(43);
-    osed_IdeaCodeColors$Colors_defaultText = osem_Color__init_3($rt_s(483));
+    osed_IdeaCodeColors$Colors_defaultText = osem_Color__init_3($rt_s(482));
     osed_IdeaCodeColors$Colors_editNumbersVLine = osem_Color__init_(85);
     osed_IdeaCodeColors$Colors_editFooterFill = osem_Color__init_1(60, 63, 65);
     osed_IdeaCodeColors$Colors_editSelectedBg = osem_Color__init_1(33, 66, 131);
@@ -23101,7 +23095,7 @@ function osem_V2i_toString($this) {
     var$1 = $this.$x0;
     var$2 = $this.$y0;
     var$3 = jl_StringBuilder__init_();
-    jl_StringBuilder_append1(jl_StringBuilder_append(jl_StringBuilder_append1(jl_StringBuilder_append(var$3, $rt_s(484)), var$1), $rt_s(485)), var$2);
+    jl_StringBuilder_append1(jl_StringBuilder_append(jl_StringBuilder_append1(jl_StringBuilder_append(var$3, $rt_s(483)), var$1), $rt_s(484)), var$2);
     return jl_StringBuilder_toString(var$3);
 }
 function osem_V2i_equals($this, $other) {
@@ -23572,7 +23566,7 @@ function jur_Lexer_parseCharClassName($this) {
         if ($this.$pattern1.data[$this.$index5] != 123) {
             var$2 = jl_String__init_0($this.$pattern1, jur_Lexer_nextIndex($this), 1);
             var$3 = jl_StringBuilder__init_();
-            jl_StringBuilder_append(jl_StringBuilder_append(var$3, $rt_s(486)), var$2);
+            jl_StringBuilder_append(jl_StringBuilder_append(var$3, $rt_s(485)), var$2);
             return jl_StringBuilder_toString(var$3);
         }
         jur_Lexer_nextIndex($this);
@@ -23593,15 +23587,15 @@ function jur_Lexer_parseCharClassName($this) {
     $res = $sb.$toString();
     if ($res.$length() == 1) {
         var$2 = jl_StringBuilder__init_();
-        jl_StringBuilder_append(jl_StringBuilder_append(var$2, $rt_s(486)), $res);
+        jl_StringBuilder_append(jl_StringBuilder_append(var$2, $rt_s(485)), $res);
         return jl_StringBuilder_toString(var$2);
     }
     b: {
         c: {
             if ($res.$length() > 3) {
-                if ($res.$startsWith1($rt_s(486)))
+                if ($res.$startsWith1($rt_s(485)))
                     break c;
-                if ($res.$startsWith1($rt_s(487)))
+                if ($res.$startsWith1($rt_s(486)))
                     break c;
             }
             break b;
@@ -24119,7 +24113,7 @@ jur_NegativeLookAhead, 0, jur_AtomicJointSet, [], 0, 0, 0, 0, ["$_init_36", $rt_
 ose_Disposable, 0, jl_Object, [], 3, 3, 0, 0, 0,
 ose_Disposable$composite$lambda$_2_0, 0, jl_Object, [ose_Disposable], 0, 3, 0, 0, ["$_init_42", $rt_wrapFunction1(ose_Disposable$composite$lambda$_2_0__init_0)],
 osej_JsFileDialog$showDirectoryPicker$lambda$_1_0, 0, jl_Object, [osej_JsFunctions$Consumer], 0, 3, 0, 0, ["$_init_", $rt_wrapFunction0(osej_JsFileDialog$showDirectoryPicker$lambda$_1_0__init_0), "$f0", $rt_wrapFunction1(osej_JsFileDialog$showDirectoryPicker$lambda$_1_0_f), "$f3", $rt_wrapFunction1(osej_JsFileDialog$showDirectoryPicker$lambda$_1_0_f0), "$f$exported$0", $rt_wrapFunction1(osej_JsFileDialog$showDirectoryPicker$lambda$_1_0_f$exported$0)],
-jl_UnsupportedOperationException, 0, jl_RuntimeException, [], 0, 3, 0, 0, ["$_init_", $rt_wrapFunction0(jl_UnsupportedOperationException__init_0), "$_init_2", $rt_wrapFunction1(jl_UnsupportedOperationException__init_2)],
+jl_UnsupportedOperationException, 0, jl_RuntimeException, [], 0, 3, 0, 0, ["$_init_", $rt_wrapFunction0(jl_UnsupportedOperationException__init_0)],
 jn_ReadOnlyBufferException, 0, jl_UnsupportedOperationException, [], 0, 3, 0, 0, ["$_init_", $rt_wrapFunction0(jn_ReadOnlyBufferException__init_0)],
 jlr_Array, 0, jl_Object, [], 4, 3, 0, 0, 0,
 otjt_ArrayBufferView, 0, jl_Object, [otj_JSObject], 1, 3, 0, 0, 0,
@@ -24680,8 +24674,8 @@ $rt_stringPool(["String contains invalid digits: ", "String contains digits out 
 "UTF-16", "UTF-16BE", "UTF-16LE", "POS2", "vPos", "TEX2", "vTex", "ISO-8859-1", "POS2_UV2", "[Graphics] GL version: ", "WebGL 2", "WebGraphics::ctor finish", "defaultText", "keyword", "field", "#9876AA", "string", "#6A8759", "comma", "#CC7832", "error", "unused", "#72737A", "number", "#6897BB", "method", "#FFC66D", "showUsage", "braceMatch", "#FFEF28", "#3B514D", "comment", "#808080", "annotation", "#BBB529", " name: ", ", size = ", "File is too large: ", "FontDesk::FontDesk iSize != size: ", "italic", "normal",
 "oblique", "UTF-8", "JsArrayView{ buffer.byteLength = ", " }", "#629755", "url(", "Patter is null", "\\Q", "\\E", "\\\\E\\Q", "trying to redefine texture size in setContent", "showOpenFilePicker -> ", "file = ", "file.content.length = ", " ", "(", ")", " + ", "-", ",", ".", "{", "}", "  ", ";", "return", "System", "Arrays", "InputStream", "out", "length", "println", "\"a string or text\"", "textCanvas", "getFont", "37", "\"ggg\"", "public", "static", "class", "extends", "implements", "interface", "boolean",
 "int", "double", "onMousePress", "MouseEvent", "event", "press", "void", "clickCount", "fonts/", "JetBrainsMono-Regular.ttf", "JetBrainsMono-Italic.ttf", "JetBrainsMono-Bold.ttf", "JetBrainsMono-BoldItalic.ttf", "#version 300 es\nprecision highp float;\nlayout(location = 0) out vec4 outColor;\nin vec2 textureUV;\nvoid main() {\n  outColor = vec4(textureUV.x, 0, textureUV.y, 1.0);\n}", "The last byte in dst ", "The last byte in src ", "teavm/worker.js", "canvasDiv", "createScene: ", "#WorkerTest", "#test", "#wasm",
-"#oneTexture", "#SelectFileTest", "#manyTextures", "FATAL: WebGL is not enabled in the browser", "GRAYSCALE", "RGBA", "BYTE", "FLOAT", "Either src or dest is null", "todo", "hello string", "withString", "withChars", "withBytes", "withInts", "asyncWithFile", "todo: add directory worker test ", "WorkerTest: \n  got ", "  methodWithStringResult = ", "  methodWithCharsResult: ", ", chars = ", "  methodWithBytesResult: ", ", bytes = ", "methodWithIntsResult: ", ", ints = ", "Chrome", "Firefox", "Direct2D", "#A9B7C6",
-"x = ", ", y = ", "Is", "In"]);
+"#oneTexture", "#SelectFileTest", "#manyTextures", "FATAL: WebGL is not enabled in the browser", "GRAYSCALE", "RGBA", "BYTE", "FLOAT", "Either src or dest is null", "hello string", "withString", "withChars", "withBytes", "withInts", "asyncWithFile", "todo: add directory worker test ", "WorkerTest: \n  got ", "  methodWithStringResult = ", "  methodWithCharsResult: ", ", chars = ", "  methodWithBytesResult: ", ", bytes = ", "methodWithIntsResult: ", ", ints = ", "Chrome", "Firefox", "Direct2D", "#A9B7C6", "x = ",
+", y = ", "Is", "In"]);
 jl_String.prototype.toString = function() {
     return $rt_ustr(this);
 };
