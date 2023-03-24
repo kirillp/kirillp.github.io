@@ -20858,15 +20858,16 @@ function ose_WebWindow__init_0($this, $factory, $onWebGlError, $canvasDivId, $wo
     osej_WorkerProtocol_sendPingToWorker($worker);
     $this.$canvasDiv = (otjdh_HTMLDocument_current()).getElementById($rt_ustr($canvasDivId));
     $this.$mainCanvas = osej_JsHelper_createMainCanvas(null);
-    osej_ResizeObserver_observePixelsOrDefault$static($this.$observer, $this.$mainCanvas);
     var$5 = $this.$canvasDiv;
     var$6 = $this.$mainCanvas;
     var$5.appendChild(var$6);
     $gl = osej_JsHelper_createContext($this.$mainCanvas);
     if ($gl === null)
         $onWebGlError.$run();
-    else
+    else {
         ose_WebWindow_init($this, $gl, $factory);
+        osej_ResizeObserver_observePixelsOrDefault$static($this.$observer, $this.$mainCanvas);
+    }
 }
 function ose_WebWindow_focus($this) {
     $this.$mainCanvas.focus();
