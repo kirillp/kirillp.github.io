@@ -5634,6 +5634,7 @@ function osepjp_BaseJavaViewportParser_getVpInts($this, $intervalStart, $interva
         $filtered = var$9.$collect(jus_Collectors_toList());
         $entry.$setValue($filtered);
         $M = $M + $filtered.$size() | 0;
+        $N = jl_Math_max($N, ($entry.$getKey()).$intValue());
     }
     var$12 = 5 + $N | 0;
     $result = $rt_createIntArray(var$12 + (4 * $M | 0) | 0);
@@ -13349,6 +13350,9 @@ function ju_MapEntry__init_0($this, $theKey, $theValue) {
     jl_Object__init_0($this);
     $this.$key = $theKey;
     $this.$value0 = $theValue;
+}
+function ju_MapEntry_getKey($this) {
+    return $this.$key;
 }
 function ju_MapEntry_getValue($this) {
     return $this.$value0;
@@ -47446,7 +47450,7 @@ $rt_wrapFunction3(oavra_LexerATNSimulator_computeTargetState), "$failOrAccept", 
 "$addDFAEdge0", $rt_wrapFunction3(oavra_LexerATNSimulator_addDFAEdge0), "$addDFAState", $rt_wrapFunction1(oavra_LexerATNSimulator_addDFAState), "$getLine", $rt_wrapFunction0(oavra_LexerATNSimulator_getLine), "$getCharPositionInLine", $rt_wrapFunction0(oavra_LexerATNSimulator_getCharPositionInLine), "$consume", $rt_wrapFunction1(oavra_LexerATNSimulator_consume)],
 juf_Predicate, 0, jl_Object, [], 3, 3, 0, 0, 0,
 ju_Map$Entry, 0, jl_Object, [], 3, 3, 0, 0, 0,
-ju_MapEntry, 0, jl_Object, [ju_Map$Entry, jl_Cloneable], 0, 0, 0, 0, ["$_init_54", $rt_wrapFunction2(ju_MapEntry__init_0), "$getValue0", $rt_wrapFunction0(ju_MapEntry_getValue), "$setValue", $rt_wrapFunction1(ju_MapEntry_setValue)],
+ju_MapEntry, 0, jl_Object, [ju_Map$Entry, jl_Cloneable], 0, 0, 0, 0, ["$_init_54", $rt_wrapFunction2(ju_MapEntry__init_0), "$getKey", $rt_wrapFunction0(ju_MapEntry_getKey), "$getValue0", $rt_wrapFunction0(ju_MapEntry_getValue), "$setValue", $rt_wrapFunction1(ju_MapEntry_setValue)],
 ju_IdentityHashMap$HashEntry, 0, ju_MapEntry, [], 0, 0, 0, 0, ["$_init_19", $rt_wrapFunction2(ju_IdentityHashMap$HashEntry__init_0)],
 js_PrivilegedAction, 0, jl_Object, [], 3, 3, 0, 0, 0,
 osepjgs_JavaStructureParser$ClassDeclarationContext, "JavaStructureParser$ClassDeclarationContext", 17, oavr_ParserRuleContext, [], 0, 3, 0, 0, ["$_init_4", $rt_wrapFunction2(osepjgs_JavaStructureParser$ClassDeclarationContext__init_0), "$getRuleIndex", $rt_wrapFunction0(osepjgs_JavaStructureParser$ClassDeclarationContext_getRuleIndex), "$enterRule0", $rt_wrapFunction1(osepjgs_JavaStructureParser$ClassDeclarationContext_enterRule), "$exitRule0", $rt_wrapFunction1(osepjgs_JavaStructureParser$ClassDeclarationContext_exitRule)],
