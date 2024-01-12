@@ -1,4 +1,4 @@
-﻿activity {
+activity {
   select{A1,B1, C1};
   A1;
   select{
@@ -7,8 +7,8 @@
       G1;
       H1;
       select{
-        (E1) X1, 
-        Y1, 
+        (E1) X1,
+        Y1,
         (A1 and (B1 or C1)) Z1
       }
     };
@@ -22,5 +22,5 @@
        ({A1,G1} and N1) C1
       }
     }
-  }  
+  }
 }
